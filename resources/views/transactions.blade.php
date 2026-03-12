@@ -15,18 +15,24 @@
             </tr>
         </thead>
         <tbody class="divide-y">
-            <tr>
-                <td class="px-6 py-4">01 Mar 2024</td>
-                <td class="px-6 py-4 font-medium">Gaji Bulanan</td>
-                <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">Pemasukan</span></td>
-                <td class="px-6 py-4 text-right text-green-600 font-bold">+ Rp 5.000.000</td>
+            @forelse($transactions as $trx)
+            <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4">{{ $trx['tanggal'] }}</td>
+                <td class="px-6 py-4 font-medium">{{ $trx['deskripsi'] }}</td>
+                <td class="px-6 py-4">
+                    <span class="px-2 py-1 {{ $trx['tipe'] == 'pemasukan' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }} rounded text-xs">
+                        {{ $trx['kategori'] }}
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-right text-{{ $trx['tipe'] == 'pemasukan' ? 'green' : 'red' }}-600 font-bold">
+                    {{ $trx['tipe'] == 'pemasukan' ? '+' : '-' }} Rp {{ number_format(abs($trx['nominal']), 0, ',', '.') }}
+                </td>
             </tr>
+            @empty
             <tr>
-                <td class="px-6 py-4">02 Mar 2024</td>
-                <td class="px-6 py-4 font-medium">Bayar Kos</td>
-                <td class="px-6 py-4"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs">Tempat Tinggal</span></td>
-                <td class="px-6 py-4 text-right text-red-600 font-bold">- Rp 1.500.000</td>
+                <td colspan="4" class="text-center text-gray-500 py-4">Belum ada data transaksi</td>
             </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
