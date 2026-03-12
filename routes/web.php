@@ -1,17 +1,14 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('dashboard'); });
 
-Route::get('/dashboard', function(){
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/transactions', function(){
-    return view('transactions');
-})->name('transaction');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/categories', function(){
-    return view('categories');
-})->name('cartegories');
+Route::get('/transactions', function(){ return view('transactions');} )->name('transaction');
+
+Route::get('/categories', [CategoryController::class, 'willy'])->name('cartegories');
