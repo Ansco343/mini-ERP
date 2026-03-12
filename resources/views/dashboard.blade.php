@@ -19,17 +19,17 @@
     </div>
     <div class="bg-white p-6 rounded-xl shadow-sm font-semibold border border-gray-100">
         <h3 class="font-bold mb-4 text-gray-700">Transaksi Terkahir</h3>
-        @if(count($recent_transactions) > 0)
+        @if (count($recent_transactions) > 0)
             <div class="space-y-4">
-                @foreach($recent_transactions as $ts)
-                    <div class="flex justify-between items-center p-3 border-b hover:bg-gray-50">
+                @foreach ($recent_transactions as $transaction)
+                    <div class="flex justify-between items-center py-3 border-b border-gray-200">
                         <div>
-                            <p class="font-semibold text-gray-700">{{ $ts['deskripsi'] }}</p>
-                            <small class="text-gray-400">{{ $ts['tanggal'] }}</small>
+                            <p class="font-medium text-gray-700">{{ $transaction['deskripsi'] }}</p>
+                            <p class="text-xs text-gray-400">{{ $transaction['tanggal'] }}</p>
                         </div>
-                        <div class="font-bold {{ $ts['tipe'] == 'pemasukan' ? 'text-green-500' : 'text-red-500' }}">
-                            {{ $ts['tipe'] == 'pemasukan' ? '+' : '-' }} Rp {{ number_format(abs($ts['nominal']), 0, ',', '.') }}
-                        </div>
+                        <p class="font-bold text-{{ $transaction['tipe'] == 'pemasukan' ? 'green' : 'red' }}-600">
+                            Rp {{ number_format($transaction['nominal'], 0, ',', '.') }}
+                        </p>
                     </div>
                 @endforeach
             </div>

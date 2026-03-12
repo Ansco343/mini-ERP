@@ -9,10 +9,10 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = [
-            ['nama' => 'Makanan', 'warna' => 'orange'],
-            ['nama' => 'Transportasi', 'warna' => 'blue'],
-            ['nama' => 'Pemasukan', 'warna' => 'green'],
-            ['nama' => 'Tempat Tinggal', 'warna' => 'red']
+            ['nama' => 'Makanan', 'tipe' => 'expense'],
+            ['nama' => 'Transportasi', 'tipe' => 'expense'],
+            ['nama' => 'Pemasukan', 'tipe' => 'income'],
+            ['nama' => 'Tempat Tinggal', 'tipe' => 'expense']
         ];
 
         return view('categories', compact('categories'));
