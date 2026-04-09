@@ -14,7 +14,7 @@
         <button class="text-gray-400 hover:text-red-500">Edit</button>
     </div> --}}
         @forelse ($category as $cat)
-            <div class="p-4 bg-white rounded-lg border-l-4 border-{{$cat['tipe'] == 'income' ? 'green' : 'orange'}}-500 shadow-sm flex items-center justify-between">
+            <div class="p-4 bg-white rounded-lg border-l-4 border-{{$cat['tipe'] == 'income' ? 'blue' : 'orange'}}-500 shadow-sm flex items-center justify-between">
                 <span class="font-bold text-gray-700"> {{$cat['name']}}</span>
                 <button class="text-gray-400 hover:text-red-500">Edit</button>
             </div>
