@@ -12,6 +12,7 @@ class CategoryController extends Controller
             ['nama' => 'Makanan', 'tipe' => 'expense'],
             ['nama' => 'Transportasi', 'tipe' => 'expense'],
             ['nama' => 'Pemasukan', 'tipe' => 'income'],
+            ['nama' => 'Tempat Tinggal', 'tipe' => 'expense'],
             ['nama' => 'Tempat Tinggal', 'tipe' => 'expense']
         ];
 
