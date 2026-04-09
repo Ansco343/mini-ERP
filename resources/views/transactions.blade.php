@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody class="divide-y">
-            <tr>
+            {{-- <tr>
                 <td class="px-6 py-4">01 Mar 2024</td>
                 <td class="px-6 py-4 font-medium">Gaji Bulanan</td>
                 <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">Pemasukan</span></td>
@@ -26,7 +26,16 @@
                 <td class="px-6 py-4 font-medium">Bayar Kos</td>
                 <td class="px-6 py-4"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs">Tempat Tinggal</span></td>
                 <td class="px-6 py-4 text-right text-red-600 font-bold">- Rp 1.500.000</td>
+            </tr> --}}
+
+            @foreach ($transactions as $transaction)
+                <tr>
+                <td class="px-6 py-4">{{$transaction->trans_date}}</td>
+                <td class="px-6 py-4 font-medium">{{$transaction['desc']}}</td>
+                <td class="px-6 py-4"><span class="px-2 py-1 bg-{{$transaction->category->type == 'income' ? 'green' : 'red'}}-100 text-{{$transaction->category->type == 'income' ? 'green' : 'red'}}-700 rounded text-xs">{{$transaction->category->cat_name}}</span></td>
+                <td class="px-6 py-4 text-right text-{{$transaction->category->type == 'income' ? 'green' : 'red'}}-600 font-bold">{{$transaction['amount']}}</td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
