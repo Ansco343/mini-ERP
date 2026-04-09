@@ -7,9 +7,9 @@
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
     @foreach($categories as $cat)
     <div class="p-4 bg-white rounded-lg border-l-4 {{ 
-        $cat['tipe'] == 'expense' ? 'border-orange-500' : 'border-blue-500'
+        $cat->tipe == 'expense' ? 'border-orange-500' : 'border-blue-500'
     }} shadow-sm flex items-center justify-between">
-        <span class="font-bold text-gray-700">{{ $cat['nama'] }}</span>
+        <span class="font-bold text-gray-700">{{ $cat->nama }}</span>
         <button class="text-gray-400 hover:text-red-500">Edit</button>
     </div>
     @endforeach

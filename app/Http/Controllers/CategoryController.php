@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = [
-            ['nama' => 'Makanan', 'tipe' => 'expense'],
-            ['nama' => 'Transportasi', 'tipe' => 'expense'],
-            ['nama' => 'Pemasukan', 'tipe' => 'income'],
-            ['nama' => 'Tempat Tinggal', 'tipe' => 'expense'],
-            ['nama' => 'Tempat Tinggal', 'tipe' => 'expense']
-        ];
+        // Data diambil langsung dari Database menggunakan Eloquent Model
+        $categories = Category::all();
 
         return view('categories', compact('categories'));
     }
