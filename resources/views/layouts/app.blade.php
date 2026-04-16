@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - MoneyTrack</title>
     @vite('resources/css/app.css')
+    {{-- @vite('resources/js/app.js') --}}
 </head>
 <body class="bg-gray-50 font-sans text-gray-900">
     <div class="flex h-screen overflow-hidden">
