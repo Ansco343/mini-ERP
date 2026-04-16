@@ -20,7 +20,9 @@
                 <td class="px-6 py-4">{{$transaction->trans_date}}</td>
                 <td class="px-6 py-4 font-medium">{{$transaction['desc']}}</td>
                 <td class="px-6 py-4"><span class="px-2 py-1 bg-{{$transaction->category->type == 'income' ? 'green' : 'red'}}-100 text-{{$transaction->category->type == 'income' ? 'green' : 'red'}}-700 rounded text-xs">{{$transaction->category->cat_name}}</span></td>
-                <td class="px-6 py-4 text-right text-{{$transaction->category->type == 'income' ? 'green' : 'red'}}-600 font-bold">{{$transaction['amount']}}</td>
+                <td class="px-6 py-4 text-right text-{{$transaction->category->type == 'income' ? 'green' : 'red'}}-600 font-bold">
+                    {{$transaction->category->type == 'income' ? '+' : '-'}} Rp {{ number_format($transaction['amount'], 0, ',', '.') }}
+                </td>
             </tr>
             @endforeach
         </tbody>
