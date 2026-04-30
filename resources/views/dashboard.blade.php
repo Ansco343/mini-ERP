@@ -94,8 +94,13 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             </div>
-                            <input type="date" name="trans_date" required class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-700 outline-none">
+                            <!-- Tambahkan value old() -->
+                            <input type="date" name="trans_date" value="{{ old('trans_date') }}" required class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-700 outline-none">
                         </div>
+                        <!-- Pesan Error -->
+                        @error('trans_date')
+                            <p class="text-red-500 text-xs font-semibold mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Deskripsi -->
@@ -105,8 +110,11 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                             </div>
-                            <input type="text" name="desc" placeholder="Contoh: Belanja Bulanan" required class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-700 outline-none">
+                            <input type="text" name="desc" placeholder="Contoh: Belanja Bulanan" value="{{ old('desc') }}" required class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-700 outline-none">
                         </div>
+                        @error('desc')
+                            <p class="text-red-500 text-xs font-semibold mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Grid for Nominal and Category -->
@@ -118,8 +126,11 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span class="text-gray-500 font-medium">Rp</span>
                                 </div>
-                                <input type="number" name="amount" placeholder="0" required class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-700 outline-none">
+                                <input type="number" name="amount" placeholder="0" value="{{ old('amount') }}" required class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-700 outline-none">
                             </div>
+                            @error('amount')
+                                <p class="text-red-500 text-xs font-semibold mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Kategori -->
@@ -132,7 +143,7 @@
                                 <select name="category_id" required class="w-full pl-10 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-700 appearance-none outline-none">
                                     <option value="" disabled selected>Pilih Kategori</option>
                                     @foreach ($category as $cat)
-                                        <option value="{{$cat->id}}"> {{$cat->cat_name}}</option>
+                                        <option value="{{$cat->id}}" {{ old('category_id') == $cat->id ? 'selected' : '' }}> {{$cat->cat_name}}</option>
                                     @endforeach
                                 </select>
                                 <!-- Custom Chevron -->
@@ -140,6 +151,9 @@
                                     <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>
                             </div>
+                            @error('category_id')
+                                <p class="text-red-500 text-xs font-semibold mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 >>>>>>> parent of 242eff8 (materi week 8)
                     </div>
@@ -157,4 +171,13 @@
             modal.classList.toggle('hidden');
         }
     </script>
+
+    @if($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hilangkan class 'hidden' dari modal secara paksa saat layar berhasil diload ulang
+            document.getElementById('modalTransaction').classList.remove('hidden');
+        });
+    </script>
+    @endif
 @endsection
