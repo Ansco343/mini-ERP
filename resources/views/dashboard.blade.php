@@ -64,7 +64,6 @@
 
             <form action="{{route('transaction.store')}}" method="POST">
                 @csrf
-<<<<<<< HEAD
                 <div>
                     <div>
                         <label for="">Tanggal</label>
@@ -85,7 +84,6 @@
                                 <option value="{{$cat->id}}"> {{$cat->cat_name}}</option>
                             @endforeach
                         </select>
-=======
                 <div class="space-y-6">
                     <!-- Tanggal -->
                     <div class="relative">
@@ -155,7 +153,6 @@
                                 <p class="text-red-500 text-xs font-semibold mt-1">{{ $message }}</p>
                             @enderror
                         </div>
->>>>>>> parent of 242eff8 (materi week 8)
                     </div>
                 </div>
                 <div>
