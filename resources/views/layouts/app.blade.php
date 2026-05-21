@@ -18,6 +18,7 @@
                 <a href="{{ route('dashboard')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-indigo-600">Dashboard</a>
                 <a href="{{ route('transaction')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-indigo-600">Transaction</a>
                 <a href="{{ route('cartegories')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-indigo-600">Category</a>
+                <a href="{{ route('reports')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-indigo-600">Report</a>
             </nav>
         </aside>
 
