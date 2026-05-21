@@ -5,6 +5,9 @@
 
 @section('content')
     {{-- Cards --}}
+    {{-- @php
+        dd($lastPrice)
+    @endphp --}}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div class="bg-white p-6 rounded-xl shadow-sm font-semibold border border-gray-100">
             <P class="text-sm text-gray-500 uppercase font-semibold text">total saldo</P>
@@ -48,6 +51,15 @@
         @else
             <p class="text-gray-400 text-sm">Belum ada History</p>
         @endif
+    </div>
+
+    <div>
+        <h1>Data Saham {{ $symbol }}</h1>
+        <p>Harga Terakhir: <strong>{{ $currency }} {{ number_format($lastPrice,2) }}</strong></p>
+    </div>
+
+    <div class="m-10 flex content-center">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.7242181796237!2d112.69863297231204!3d-7.272190347679231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fc1be7cf2b6f%3A0xab263159c7a5d475!2sInstitut%20Informatika%20Indonesia%20(%20IKADO%20)!5e0!3m2!1sen!2sid!4v1777531831002!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     {{-- Form Modal --}}
