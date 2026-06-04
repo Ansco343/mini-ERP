@@ -29,4 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports');
     
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/reports/download', [ReportController::class, 'downloadPdf'])->name('reports.download');
 });
