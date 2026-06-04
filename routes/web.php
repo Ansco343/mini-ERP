@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories', [CategoryController::class, 'Category'])->name('cartegories');
     Route::post('/categories', [CategoryController::class, 'Store'])->name('cartegories.store');
     Route::get('/reports', [ReportController::class, 'index'])->name('reports');
+    Route::get('/reports/download', [ReportController::class, 'downloadPdf'])->name('reports.download');
     
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
