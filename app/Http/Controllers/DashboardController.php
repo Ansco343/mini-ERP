@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Scheb\YahooFinanceApi\ApiClientFactory;
 use App\Models\Transaction;
 use App\Models\Category;
 
@@ -30,7 +28,7 @@ class DashboardController extends Controller
             $q->where('type', 'expense');
         })->sum('amount');
 
-        // $test = Transaction::select();
+        $test = Transaction::select();
 
         $total_saldo = $pemasukkan - $pengeluaran;
 
@@ -38,42 +36,11 @@ class DashboardController extends Controller
 
         $category = Category::all();
 
-        //yahoo finance
-        $symbol = 'TLKM.JK';
-        $url = "https://query1.finance.yahoo.com/v8/finance/chart/{$symbol}";
-        $response = Http::get($url);
-
-        $lastPrice = '';
-
-        if($response->successful()){
-            $data = $response->json();
-
-            $lastPrice = $data['chart']['result'][0]['meta']['regularMarketPrice'];
-            $currency = $data['chart']['result'][0]['meta']['currency'];
-        }
-
-        // $client = ApiClientFactory::createApiClient();
-
-        // // Fetch a single stock quote (e.g., Apple)
-        // $quote = $client->getQuote("AAPL");
-        // echo $quote->getRegularMarketPrice();
-
-        // // Fetch historical data
-        // $historicalData = $client->getHistoricalQuoteData(
-        //     "AAPL",
-        //     \Scheb\YahooFinanceApi\ApiClient::INTERVAL_1_DAY,
-        //     new \DateTime("-30 days"),
-        //     new \DateTime("today")
-        // );
-
         return view('dashboard', compact('pemasukkan',
             'pengeluaran',
             'total_saldo',
             'recent_transaction',
-            'category',
-            'lastPrice',
-            'currency',
-            'symbol'));
+            'category'));
     }
     
 }
