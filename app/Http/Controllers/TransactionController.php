@@ -39,11 +39,7 @@ class TransactionController extends Controller
         if (!$transaction->receipt_path || !Storage::exists($transaction->receipt_path)) {
             abort(404);
         }
-
-        if ($transaction->user_id !== Auth::id()) {
-            abort(403, 'Anda tidak berhak melihat nota ini!');
-        }
-
+        
         return response()->file(Storage::path($transaction->receipt_path));
     }
 }
