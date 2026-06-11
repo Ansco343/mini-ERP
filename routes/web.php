@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/transactions', [TransactionController::class, 'Transaction'])->name('transaction');
     Route::post('/transactions', [TransactionController::class, 'Store'])->name('transaction.store');
+    Route::get('/transactions/{transaction}/receipt', [TransactionController::class, 'showReceipt'])->name('transaction.receipt');
     
     Route::get('/categories', [CategoryController::class, 'Category'])->name('cartegories');
     Route::post('/categories', [CategoryController::class, 'Store'])->name('cartegories.store');

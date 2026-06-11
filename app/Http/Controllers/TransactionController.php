@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Category;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
@@ -16,15 +16,34 @@ class TransactionController extends Controller
     }
 
     public function Store(Request $request){
-        // dd($request);
         $validated = $request->validate([
             'trans_date' => 'required|date',
             'desc' => 'required|string|max:255',
             'amount' => 'required|numeric',
-            'category_id' => 'required|exists:categories,id'
+            'category_id' => 'required|exists:categories,id',
+            'receipt' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048'
         ]);
+
+        if ($request->hasFile('receipt')) {
+            $path = $request->file('receipt')->store('receipts');
+            $validated['receipt_path'] = $path;
+        }
+
         Transaction::create($validated);
 
         return redirect()->route('transaction')->with('success', 'Transaksi Berhasil Ditambahkan!');
+    }
+
+    public function showReceipt(Transaction $transaction)
+    {
+        if (!$transaction->receipt_path || !Storage::exists($transaction->receipt_path)) {
+            abort(404);
+        }
+
+        if ($transaction->user_id !== Auth::id()) {
+            abort(403, 'Anda tidak berhak melihat nota ini!');
+        }
+
+        return response()->file(Storage::path($transaction->receipt_path));
     }
 }

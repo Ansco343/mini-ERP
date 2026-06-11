@@ -66,7 +66,7 @@
                 </button>
             </div>
 
-            <form action="{{route('transaction.store')}}" method="POST">
+            <form action="{{route('transaction.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-6">
                     <!-- Tanggal -->
@@ -134,7 +134,20 @@
                             @error('category_id')
                                 <p class="text-red-500 text-xs font-semibold mt-1">{{ $message }}</p>
                             @enderror
+                    </div>
+
+                    <!-- Upload Nota (Receipt) -->
+                    <div class="relative">
+                        <label class="text-sm font-semibold text-gray-700 mb-1 block">Upload Nota / Bukti (Opsional)</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <input type="file" name="receipt" class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-gray-700 outline-none file:mr-4 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
                         </div>
+                        @error('receipt')
+                            <p class="text-red-500 text-xs font-semibold mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
                 <!-- Submit Button -->
