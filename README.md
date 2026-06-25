@@ -101,6 +101,13 @@ Aplikasi ini menggunakan metode **Private Storage** untuk menjaga kerahasiaan do
 3. Akses file dilakukan secara aman melewati kontrol rute terproteksi: `/transactions/{transaction}/receipt` yang memverifikasi sesi aktif pengguna sebelum menampilkan gambar nota menggunakan method `response()->file()`.
 
 ---
+## Diagram
+```mermaid
+graph TD
+    A[User Input] --> B{Ada File?}
+```
+
+---
 
 ## 📄 Lisensi
 Proyek ini dilisensikan di bawah **MIT License** - Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
