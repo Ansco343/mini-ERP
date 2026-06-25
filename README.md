@@ -105,6 +105,10 @@ Aplikasi ini menggunakan metode **Private Storage** untuk menjaga kerahasiaan do
 ```mermaid
 graph TD
     A[User Input] --> B{Ada File?}
+    B -- ya --> C[Simpan File]
+    B -- Tidak --> D[Simpan Value]
+    C --> E[Selesai]
+    D --> E
 ```
 
 ---
